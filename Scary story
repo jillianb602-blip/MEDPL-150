@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survive the Night</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0d0d0d;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .story-box {
+      width: 100%;
+      max-width: 700px;
+      background: #161616;
+      border: 2px solid #333;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      color: #d9d9d9;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    button {
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2a2a2a;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #444;
+      transform: scale(1.02);
+    }
+
+    .warning {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="story-box">
+    <h1 id="title">Survive the Night</h1>
+    <p id="text">
+      Your car breaks down during a storm near a dark forest. You find an old hotel with flickering lights and decide to stay for the night. The front desk worker smiles strangely as he hands you your key to Room 12.
+      <br><br>
+      At midnight, the TV suddenly turns on by itself:
+      <br><br>
+      <span class="warning">“Do not leave your room. Do not trust the man in Room 13.”</span>
+    </p>
+
+    <div class="choices" id="choices">
+      <button onclick="scene1('open')">Open the door</button>
+      <button onclick="scene1('quiet')">Stay quiet</button>
+      <button onclick="scene1('peephole')">Look through the peephole</button>
+    </div>
+  </div>
+
+  <script>
+    const title = document.getElementById('title');
+    const text = document.getElementById('text');
+    const choices = document.getElementById('choices');
+
+    function setScene(sceneTitle, sceneText, buttonsHTML) {
+      title.innerHTML = sceneTitle;
+      text.innerHTML = sceneText;
+      choices.innerHTML = buttonsHTML;
+    }
+
+    function scene1(choice) {
+      let intro = "You hear loud knocking at your door. Through the peephole, you see a tall figure standing still... smiling.";
+
+      setScene(
+        "The Chase Begins",
+        intro + "<br><br>The lights suddenly go out. Footsteps race down the hallway. The man from Room 13 is coming for you.",
+        `
+          <button onclick="scene2('stairs')">Run to the stairs</button>
+          <button onclick="scene2('laundry')">Hide in the laundry room</button>
+          <button onclick="scene2('exit')">Escape through emergency exit</button>
+        `
+      );
+    }
+
+    function scene2(choice) {
+      setScene(
+        "The Woods",
+        "You escape outside into the dark woods behind the hotel. Rain pours down. Branches snap behind you. He is still following you.",
+        `
+          <button onclick="scene3('run')">Keep running</button>
+          <button onclick="endingBad()">Hide behind trees</button>
+          <button onclick="scene3('light')">Follow a strange light</button>
+        `
+      );
+    }
+
+    function scene3(choice) {
+      setScene(
+        "Final Choice",
+        "Deep in the forest, you find an old cabin. Inside is a dusty mirror. Everything suddenly goes silent. You hear footsteps behind you.",
+        `
+          <button onclick="endingGood()">Break through the back door</button>
+          <button onclick="endingRoom()">Stay and hide inside</button>
+          <button onclick="endingSecret()">Look into the mirror</button>
+        `
+      );
+    }
+
+    function endingGood() {
+      setScene(
+        "Good Ending — Escape",
+        "You break through the back door and reach the main road as the sun rises. When police arrive, they tell you:<br><br><span class='warning'>There hasn't been a hotel there for years.</span><br><br>You survived.<br><br><strong>Some places should stay forgotten.</strong>",
+        `<button onclick="location.reload()">Play Again</button>`
+      );
+    }
+
+    function endingBad() {
+      setScene(
+        "Bad Ending — Caught",
+        "You hide behind the trees, but it's too late. The man from Room 13 slowly steps closer. He smiles.<br><br>The screen fades to black.<br><br>The next morning, your car is still there... but you are gone.<br><br><strong>Another guest has checked in.</strong>",
+        `<button onclick="location.reload()">Try Again</button>`
+      );
+    }
+
+    function endingRoom() {
+      setScene(
+        "Risky Ending — Stay",
+        "You lock yourself inside the cabin and wait. The knocking stops. Morning comes.<br><br>You think you survived... until you look in the mirror and see someone standing behind you.<br><br><strong>You should have run.</strong>",
+        `<button onclick="location.reload()">Try Again</button>`
+      );
+    }
+
+    function endingSecret() {
+      setScene(
+        "Secret Ending — Was It a Dream?",
+        "You look into the mirror. The figure appears behind you.<br><br>You scream...<br><br>...and wake up in your own bed.<br><br>Your phone reads <span class='warning'>3:13 AM</span>.<br><br>You laugh nervously—until you notice muddy footprints on your bedroom floor.<br><br><strong>Knock. Knock. Knock.</strong><br><br><strong>Maybe you never woke up at all.</strong>",
+        `<button onclick="location.reload()">Play Again</button>`
+      );
+    }
+  </script>
+
+</body>
+</html>
