@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waitress Simulator</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background-color: #ffd6e7;
+text-align:center;
+margin:0;
+padding:0;
+}
+
+.scene{
+display:none;
+padding:40px;
+}
+
+.active{
+display:block;
+}
+
+h1{
+color:#8b5e3c;
+}
+
+p{
+font-size:20px;
+}
+
+img{
+width:300px;
+border-radius:20px;
+margin:20px;
+}
+
+button{
+background-color:white;
+border:none;
+padding:15px 25px;
+margin:10px;
+border-radius:20px;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background-color:#fff4e6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- START SCREEN -->
+<div id="start" class="scene active">
+<h1>🍝 First Day as a Waitress 🍝</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="resy.jpeg" alt="">
+
+<p>
+It's your first shift at Pasta Palace.
+The manager already looks stressed.
+</p>
+
+<button onclick="showScene('scene1')">
+Start Shift
+</button>
+</div>
+
+<!-- SCENE 1 -->
+<div id="scene1" class="scene">
+<h1>A customer asks for water...</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="holding.jpeg" alt="">
+
+<p>What do you do?</p>
+
+<button onclick="showScene('spill')">
+Spill it everywhere
+</button>
+
+<button onclick="showScene('normal')">
+Serve it normally
+</button>
+</div>
+
+<!-- SPILL ENDING -->
+<div id="spill" class="scene">
+<h1>💀 DISASTER 💀</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="wata.png" alt="">
+
+<p>
+You accidentally dump ice water into the customer's purse.
+A child starts crying.
+</p>
+
+<button onclick="showScene('scene2')">
+Continue Anyway
+</button>
+</div>
+
+<!-- NORMAL PATH -->
+<div id="normal" class="scene">
+<h1>✨ Nice Job ✨</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="happypeep" alt="">
+
+<p>
+The customer says you're the best waitress ever.
+You feel powerful.
+</p>
+
+<button onclick="showScene('scene2')">
+Continue
+</button>
+</div>
+
+<!-- SCENE 2 -->
+<div id="scene2" class="scene">
+<h1>The kitchen pipe explodes...</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="dirty.png" alt="">
+
+<p>Everyone is panicking.</p>
+
+<button onclick="showScene('cry')">
+Cry in the bathroom
+</button>
+
+<button onclick="showScene('fries')">
+Eat fries and ignore it
+</button>
+</div>
+
+<!-- CRY ENDING -->
+<div id="cry" class="scene">
+<h1>😭 Bathroom Ending 😭</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="cry.png" alt="">
+
+<p>
+You hide for 45 minutes.
+The manager finds you.
+</p>
+
+<button onclick="showScene('ending1')">
+See Ending
+</button>
+</div>
+
+<!-- FRIES ENDING -->
+<div id="fries" class="scene">
+<h1>🍟 Fry Goblin 🍟</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="fries.jpeg" alt="">
+
+<p>
+You eat so many fries that the cook respects you now.
+</p>
+
+<button onclick="showScene('ending2')">
+See Ending
+</button>
+</div>
+
+<!-- ENDING 1 -->
+<div id="ending1" class="scene">
+<h1>YOU GOT FIRED 💀</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="firedd" alt="">
+
+<p>
+But at least you didn't drop soup on anyone.
+</p>
+
+<button onclick="showScene('start')">
+Play Again
+</button>
+</div>
+
+<!-- ENDING 2 -->
+<div id="ending2" class="scene">
+<h1>⭐ EMPLOYEE OF THE MONTH ⭐</h1>
+
+<!-- ADD IMAGE HERE -->
+<img src="happyy.jpeg" alt="">
+
+<p>
+Somehow your chaos impressed everyone.
+</p>
+
+<button onclick="showScene('start')">
+Play Again
+</button>
+</div>
+
+<script>
+function showScene(sceneId){
+
+let scenes = document.querySelectorAll('.scene');
+
+scenes.forEach(scene => {
+scene.classList.remove('active');
+});
+
+document.getElementById(sceneId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
